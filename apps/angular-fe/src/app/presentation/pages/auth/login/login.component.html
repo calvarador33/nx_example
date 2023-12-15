@@ -2,7 +2,7 @@
   <div class="flex flex-column align-items-center justify-content-center">
       <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
           <div>
-              <form name="form" >
+              <form name="form"  (ngSubmit)="login()">
                   <label for="username" class="block text-900 text-xl font-medium mb-2">Usuario</label>
                   <input name="username" [(ngModel)]="form.username" type="text" placeholder="Usuario" pInputText [(ngModel)]="lsUsername"
                       class="w-full md:w-30rem mb-5" style="padding:1rem">

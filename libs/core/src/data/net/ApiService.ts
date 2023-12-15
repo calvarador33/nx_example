@@ -9,7 +9,7 @@ export class ApiService {
   public _REMOTE_END_POINTS = {
     URL_GET_ACCOUNT_PARAMS: `${environment.baseRoutePath}/author`,
 
-    URL_POST_AUTH: `${environment.baseRoutePath}/getAccess`,
+    URL_POST_AUTH: `${environment.baseRoutePath}/users/getAccess`,
 
     URL_GET_ITEMS: `${environment.baseRoutePath}/getItems/`,
 

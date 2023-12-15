@@ -19,8 +19,8 @@ export class UserRepositoryImpl implements UserRepository {
 
   login(email: string, password: string): Observable<any> {
     const params = {
-      email: email,
-      password: password
+      emailUsuario: email,
+      clave: password
     };
 
     return this.httpClient.post<any>(
