@@ -1,0 +1,99 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/angular-fe/src",
+  "prefix": "nx-example",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/angular-fe",
+        "index": "apps/angular-fe/src/index.html",
+        "main": "apps/angular-fe/src/main.ts",
+        "polyfills": "apps/angular-fe/src/polyfills.ts",
+        "tsConfig": "apps/angular-fe/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/angular-fe/src/favicon.ico",
+          "apps/angular-fe/src/assets"
+        ],
+        "styles": ["apps/angular-fe/src/styles.scss"],
+        "scripts": [
+          "./node_modules/prismjs/prism.js",
+          "./node_modules/prismjs/components/prism-typescript.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/angular-fe/src/environments/environment.ts",
+              "with": "apps/angular-fe/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "angular-fe:build:production"
+        },
+        "development": {
+          "browserTarget": "angular-fe:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/angular-fe/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "angular-fe:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/angular-fe/**/*.ts",
+          "apps/angular-fe/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/angular-fe"],
+      "options": {
+        "jestConfig": "apps/angular-fe/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
