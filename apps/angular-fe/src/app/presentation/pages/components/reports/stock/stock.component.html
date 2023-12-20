@@ -1,0 +1,270 @@
+<div class="container-stock">
+
+    <p-fieldset legend="Filtros" [toggleable]="true">
+        <div class="grid p-fluid mt-1">
+            <div class="field col-12 md:col-2">
+                <span class="p-float-label">
+                    <p-calendar inputId="calendar" [(ngModel)]="fechaConsulta" dateFormat="dd/mm/yy"></p-calendar>
+                    <label for="calendar">Fecha Consulta</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-3">
+                <app-filter-select [accion]="15" [label]="'Autoridad Sanitaria'" (onChange)="autoridadSanitaria=$event"
+                    ngDefaultControl></app-filter-select>
+            </div>
+            <!--<div class="field col-12 md:col-2">
+                <app-filter-select [accion]="18" [label]="'Tipo Uso'" (onChange)="tipoUso=$event"></app-filter-select>
+            </div>-->
+            <div class="field col-12 md:col-2">
+                <app-filter-select [accion]="17" [label]="'Tipo Producto'"
+                    (onChange)="tipoProducto=$event"></app-filter-select>
+            </div>
+            <div class="field col-12 md:col-3">
+                <app-filter-select [accion]="3" [label]="'Estrategias'"
+                    (onChange)="estrategia=$event"></app-filter-select>
+            </div>
+            <div class="field col-12 md:col-10" style="padding: 0px 0px 0px 15px; margin: 0px;">
+                <span class="p-float-label">
+                    <input inputId="producto" type="text" pInputText placeholder="Descripción del Producto"
+                        [(ngModel)]="producto" (keyup.enter)="getData()">
+                    <label for="producto">Producto</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-1" style="padding: 0px 0px 0px; margin: 0px;">
+                <button type="button" pButton pRipple label="Buscar" (click)="getData()"></button>
+            </div>
+
+        </div>
+    </p-fieldset>
+    <br />
+
+    <p-splitter layout="{{splitLayout}}" [panelSizes]="[35, 65]" [ngClass]="{'maximized':visibleScreen}"
+        class="container-main">
+
+        <ng-template pTemplate>
+            <p-table #dt1 dataKey="id" [value]="dataStock" selectionMode="single" dataKey="prd_sismed"
+                [loading]="loadingStock" [rows]="4" [rowHover]="true" styleClass="p-datatable-gridlines p-datatable-sm"
+                [paginator]="true" responsiveLayout="scroll" class="table-format">
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        Listado Productos
+                        <button pButton pRipple type="button" class="p-button-success ml-auto mr-2"
+                            icon="pi pi-file-excel" (click)="getExcelData()"></button>
+                        <button *ngIf="!visibleScreen" pButton pRipple type="button" class="p-button-info mr-2"
+                            icon="pi pi-external-link" (click)="visibleScreen = !visibleScreen"></button>
+                        <button *ngIf="visibleScreen" pButton pRipple type="button" class="p-button-info mr-2"
+                            icon="pi pi-arrow-down-left" (click)="visibleScreen = !visibleScreen"></button>
+                        <button *ngIf="splitLayout==='vertical'" pButton pRipple type="button" class="p-button-warning"
+                            icon="pi pi-ellipsis-h" (click)="changeSplitLayout()"></button>
+                        <button *ngIf="splitLayout==='horizontal'" pButton pRipple type="button"
+                            class="p-button-warning" icon="pi pi-ellipsis-v" (click)="changeSplitLayout()"></button>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Producto
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Código SISMED
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Código SIGA
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Tipo Producto
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Stock Total
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="min-width: 12rem">
+                            <app-commonfilter [type]="'text'" [field]="'prd_descripcion'" [placeholder]="'Producto'"
+                                [menu]="'row'"></app-commonfilter>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <app-commonfilter [type]="'text'" [field]="'prd_sismed'" [placeholder]="'SISMED'"
+                                [menu]="'row'"></app-commonfilter>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <app-commonfilter [type]="'text'" [field]="'prd_siga'" [placeholder]="'SIGA'"
+                                [menu]="'row'"></app-commonfilter>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <app-commonfilter [type]="'text'" [field]="'TipoMI'" [placeholder]="'Tipo'"
+                                [menu]="'row'"></app-commonfilter>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <app-commonfilter [type]="'numeric'" [field]="'stock'" [placeholder]="'Stock'"
+                                [menu]="'row'"></app-commonfilter>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-dataStock>
+                    <tr [pSelectableRow]="dataStock">
+                        <td (click)="getDataDetail(dataStock)">
+                            {{dataStock.prd_descripcion}}
+                        </td>
+                        <td (click)="getDataDetail(dataStock)">
+                            {{dataStock.prd_sismed}}
+                        </td>
+                        <td (click)="getDataDetail(dataStock)">
+                            {{dataStock.prd_siga}}
+                        </td>
+                        <td (click)="getDataDetail(dataStock)">
+                            {{dataStock.TipoMI}}
+                        </td>
+                        <td (click)="getDataDetail(dataStock)" style="text-align: right;">
+                            {{dataStock.stock|number}}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </ng-template>
+
+        <ng-template pTemplate>
+            <p-table #dt1 dataKey="id" [value]="dataDetail" [loading]="loadingDetail" [rows]="10" [rowHover]="true"
+                selectionMode="single" dataKey="Establecimiento" styleClass="p-datatable-gridlines p-datatable-sm"
+                [paginator]="true" responsiveLayout="scroll" class="table-format">
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        Stock por establecimiento de salud
+                        <button pButton pRipple type="button" class="p-button-success ml-auto mr-2"
+                            icon="pi pi-file-excel" (click)="getExcelData()"></button>
+                        <span>
+                            <h3>Total:{{suma}}</h3>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Autoridad Sanitaria
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Establecimiento
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Fecha Reporte
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Precio
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Consumo Diario
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Stock
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Accion
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="min-width: 12rem">
+                            <app-commonfilter [type]="'text'" [field]="'AutoridadSanitaria'"
+                                [placeholder]="'Autoridad Sanitaria'" [menu]="'row'"></app-commonfilter>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <app-commonfilter [type]="'text'" [field]="'Establecimiento'"
+                                [placeholder]="'Establecimiento'" [menu]="'row'"></app-commonfilter>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <app-commonfilter [type]="'text'" [field]="'FechaReporte'" [placeholder]="'Fecha'"
+                                [menu]="'row'"></app-commonfilter>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <app-commonfilter [type]="'numeric'" [field]="'PrecioU'" [placeholder]="'Precio'"
+                                [menu]="'row'"></app-commonfilter>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <app-commonfilter [type]="'numeric'" [field]="'consumo'" [placeholder]="'Consumo'"
+                                [menu]="'row'"></app-commonfilter>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <app-commonfilter [type]="'numeric'" [field]="'stock'" [placeholder]="'Stock'"
+                                [menu]="'row'"></app-commonfilter>
+                        </th>
+                        <th style="min-width: 12rem">
+
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-dataDetail>
+                    <tr [pSelectableRow]="dataDetail">
+                        <td>
+                            {{dataDetail.AutoridadSanitaria}}
+                        </td>
+                        <td>
+                            {{dataDetail.Establecimiento}}
+                        </td>
+                        <td>
+                            {{dataDetail.FechaReporte|date:'dd/MM/yyyy'}}
+                        </td>
+                        <td style="text-align: right;">
+                            {{dataDetail.PrecioU|number:'1.2-2'}}
+                        </td>
+                        <td style="text-align: right;">
+                            {{dataDetail.consumo|number}}
+                        </td>
+                        <td style="text-align: right;">
+                            {{dataDetail.stock | number}}
+                        </td>
+                        <td>
+                            <button pButton pRipple type="button" class="p-button-warning ml-auto mr-2"
+                                icon="pi pi-history" (click)="modalStockHistory(dataDetail)"></button>
+                            <button pButton pRipple type="button" class="p-button-info" icon="pi pi-users"
+                                (click)="modalContact(dataDetail)"></button>
+
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </ng-template>
+
+    </p-splitter>
+
+    <p-dialog *ngIf="dataContact!=='-'" header="Información de Contactos del Establecimiento"
+        [(visible)]="showsModalContact" [modal]="true" showEffect="fade" [style]="{width: '30vw'}"
+        [breakpoints]="{'960px': '75vw'}" (onHide)="closeModalContact()">
+        <p class="line-height-3 m-0">
+            <app-contact [contact]="dataContact"></app-contact>
+        </p>
+        <ng-template pTemplate="footer">
+            <button pButton icon="pi pi-check" (click)="closeModalContact()" label="Ok"
+                class="p-button-outlined"></button>
+        </ng-template>
+    </p-dialog>
+
+    <p-sidebar *ngIf="dataStockHistory!=='-'" [(visible)]="showModalStockHistory" [fullScreen]="true"
+        [baseZIndex]="10000" (onHide)="closeStockHistory()">
+        <app-stockhistory [dataHistory]="dataStockHistory"></app-stockhistory>
+    </p-sidebar>
+
+
+</div>

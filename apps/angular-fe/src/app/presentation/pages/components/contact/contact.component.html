@@ -1,0 +1,95 @@
+<div *ngIf="autoridadSanitaria!==''" class="col-12 md:col-12">
+    <div class="card p-fluid">
+        <div class="field">
+            <label for="inputtext">Autoridad Sanitaria</label>
+            <input type="text" id="inputtext" pInputText [(ngModel)]="autoridadSanitaria" [disabled]="true">
+        </div>
+        <div class="field">
+            <label for="inputtext">Establecimiento</label>
+            <input type="text" id="inputtext" pInputText [(ngModel)]="establecimiento" [disabled]="true">
+        </div>
+        <div class="field">
+            <label for="inputtext">Dirección</label>
+            <input type="text" id="inputtext" pInputText [(ngModel)]="direccion" [disabled]="true">
+        </div>
+        <div class="field">
+            <label for="inputtext">Ubigeo</label>
+            <input type="text" id="inputtext" pInputText [(ngModel)]="ubigeo" [disabled]="true">
+        </div>
+        <div class="field">
+            <label for="inputtext">Teléfono</label>
+            <input type="text" id="inputtext" pInputText [(ngModel)]="telefono" [disabled]="true">
+        </div>
+    </div>
+
+    <p-table #dt1 dataKey="id" [value]="contactos" [rowHover]="true" styleClass="p-datatable-gridlines p-datatable-sm"
+        responsiveLayout="scroll">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width: 12rem">
+                    <div class="flex justify-content-between align-items-center">
+                        Apellidos y Nombres
+                    </div>
+                </th>
+                <th style="min-width: 12rem">
+                    <div class="flex justify-content-between align-items-center">
+                        Correo
+                    </div>
+                </th>
+                <th style="min-width: 12rem">
+                    <div class="flex justify-content-between align-items-center">
+                        Teléfono
+                    </div>
+                </th>
+                <th style="min-width: 12rem">
+                    <div class="flex justify-content-between align-items-center">
+                        Celular
+
+                    </div>
+                </th>
+                <th style="min-width: 12rem">
+                    <div class="flex justify-content-between align-items-center">
+                        Cargo
+                    </div>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-contactos>
+            <tr>
+                <td>
+                    {{contactos.swc_ctt_apellidosnombres}}
+                </td>
+                <td>
+                    {{contactos.swc_ctt_correo}}
+                </td>
+                <td>
+                    {{contactos.swc_ctt_telefonofijo}}
+                </td>
+                <td>
+                    {{contactos.swc_ctt_telefonocelular}}
+                </td>
+                <td>
+                    {{contactos.swc_ctt_cargo}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>
+
+<div *ngIf="autoridadSanitaria===''" class="border-round border-1 surface-border p-4">
+    <div class="flex mb-3">
+        <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+        <div>
+            <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton height=".5rem"></p-skeleton>
+        </div>
+    </div>
+    <p-skeleton width="100%" height="150px"></p-skeleton>
+    <div class="flex justify-content-between mt-3">
+        <p-skeleton width="4rem" height="2rem"></p-skeleton>
+        <p-skeleton width="4rem" height="2rem"></p-skeleton>
+    </div>
+</div>

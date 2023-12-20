@@ -1,0 +1,110 @@
+<div class="container-stock">
+
+    <div class="container-main">
+        <p-table #dt1 dataKey="id" [value]="data" [loading]="loading" [rows]="20" [rowHover]="true"
+            styleClass="p-datatable-gridlines p-datatable-sm" [paginator]="true" responsiveLayout="scroll"
+            class = "table-container">
+            <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
+                    {{establishment.establishment.swc_dash_vDiresa}} |
+                    {{establishment.establishment.swc_dash_vEstablecimiento}}
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Producto
+                        </div>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Suministro Centralizado
+                        </div>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Sismed
+                        </div>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Siga
+                        </div>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Fecha Reporte
+                        </div>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Consumo Diario
+                        </div>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Stock
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th style="min-width: 12rem">
+                        <app-commonfilter [type]="'text'" [field]="'swc_dash_vprd_descripcion'"
+                            [placeholder]="'Producto'" [menu]="'row'"></app-commonfilter>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <app-commonfilter [type]="'text'" [field]="''" [placeholder]="'Suministro Centralizado'"
+                            [menu]="'row'"></app-commonfilter>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <app-commonfilter [type]="'text'" [field]="'swc_dash_vprd_sismed'" [placeholder]="'Sismed'"
+                            [menu]="'row'"></app-commonfilter>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <app-commonfilter [type]="'text'" [field]="'swc_dash_vprd_siga'" [placeholder]="'Siga'"
+                            [menu]="'row'"></app-commonfilter>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <app-commonfilter [type]="'text'" [field]="'FechaReporte'" [placeholder]="'Fecha'"
+                            [menu]="'row'"></app-commonfilter>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <app-commonfilter [type]="'numeric'" [field]="'consumo'" [placeholder]="'Consumo'"
+                            [menu]="'row'"></app-commonfilter>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <app-commonfilter [type]="'numeric'" [field]="'stock'" [placeholder]="'Stock'"
+                            [menu]="'row'"></app-commonfilter>
+                    </th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-data>
+                <tr>
+                    <td>
+                        {{data.swc_dash_vprd_descripcion}}
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        {{data.swc_dash_vprd_sismed}}
+                    </td>
+                    <td>
+                        {{data.swc_dash_vprd_siga}}
+                    </td>
+                    <td>
+                        {{data.FechaReporte|date:'dd/MM/yyyy'}}
+                    </td>
+                    <td style="text-align: right;">
+                        {{data.consumo|number:'1.2-2'}}
+                    </td>
+                    <td style="text-align: right;">
+                        {{data.stock|number}}
+                    </td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

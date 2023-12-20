@@ -26,8 +26,16 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    const token = this.userService.getToken();
+    if (!token) {
+      this.router.navigate(['/login']);
+      return;
+    }
   }
+
+
+
+  
 
   removeTab(event: any): void {
     this.store.dispatch({

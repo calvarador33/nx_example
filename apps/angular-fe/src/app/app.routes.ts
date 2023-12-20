@@ -5,7 +5,7 @@ import { LoginComponent } from './presentation/pages/auth/login/login.component'
 
 export const appRoutes: Route[] = [
   {
-    path: 'home', component: AppLayoutComponent,
+    path: '', component: AppLayoutComponent,
     children: [
         { path: '', loadChildren: () => import('../app/presentation/pages/home/home.module').then(m => m.HomeModule) },
 

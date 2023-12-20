@@ -1,25 +1,39 @@
-<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
-  <div class="flex flex-column align-items-center justify-content-center">
-      <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
-          <div>
-              <form name="form"  (ngSubmit)="login()">
-                  <label for="username" class="block text-900 text-xl font-medium mb-2">Usuario</label>
-                  <input name="username" [(ngModel)]="form.username" type="text" placeholder="Usuario" pInputText [(ngModel)]="lsUsername"
-                      class="w-full md:w-30rem mb-5" style="padding:1rem">
-                  <label for="password" class="block text-900 font-medium text-xl mb-2">Contraseña</label>
-                  <p-password name="password" [(ngModel)]="form.password" placeholder="Contraseña" [toggleMask]="true"
-                      styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
-                  <p-messages [value]="msgs"></p-messages>
-                  <div class="flex align-items-center justify-content-between mb-5 gap-5">
-                      <div class="flex align-items-center">
-                          <p-checkbox name="rememberme" [(ngModel)]="form.rememberme" [binary]="true" [(ngModel)]="lsRememberme"
-                              styleClass="mr-2"></p-checkbox>
-                          <label for="rememberme">Recordar Usuario</label>
-                      </div>
-                  </div>
-                  <button pButton pRipple label="Iniciar Sesión" class="w-full p-3 text-xl"></button>
-              </form>
-          </div>
-      </div>
-  </div>
+<div class="login">
+    <header>
+        <img src="../../../assets/images/banner.png" style="width: 100%;" />
+    </header>
+    <main>
+        <div class="flex flex-column align-items-center justify-content-center">
+            <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px;border: 2px solid #2F4D62;">
+                <div>
+                    <form name="form" (ngSubmit)="login()" >
+                        <label for="username" class="block text-900 text-xl font-medium mb-2">Usuario</label>
+                        <input name="username" [(ngModel)]="form.username" type="text" placeholder="Usuario" pInputText
+                            [(ngModel)]="lsUsername" class="w-full md:w-30rem mb-5" style="padding:1rem">
+                        <label for="password" class="block text-900 font-medium text-xl mb-2">Contraseña</label>
+                        <p-password name="password" [(ngModel)]="form.password" placeholder="Contraseña"
+                            [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
+                        <p-messages [value]="msgs"></p-messages>
+                        <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                            <div class="flex align-items-center">
+                                <p-checkbox name="rememberme" [(ngModel)]="form.rememberme" [binary]="true"
+                                    [(ngModel)]="lsRememberme" styleClass="mr-2"></p-checkbox>
+                                <label for="rememberme">Recordar Usuario</label>
+                            </div>
+                        </div>
+                        <div class="re-captcha">
+                         <re-captcha (resolved)="resolved($event)"></re-captcha> 
+                        </div>
+                        <button pButton pRipple label="Iniciar Sesión" class="w-full p-3 text-xl"></button>                        
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <span>Centro Nacional de Abastecimiento de Recursos Estratégicos en Salud.</span><br />
+        <span>Jirón Nazca Nº 548 - Jesús Maria / Lima - Perú</span><br />
+        <span>Central Telefónica : 748-3030</span>
+    </footer>
 </div>

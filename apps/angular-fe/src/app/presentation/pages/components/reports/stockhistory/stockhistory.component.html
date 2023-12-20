@@ -1,0 +1,59 @@
+<p-table #dt1 dataKey="id" [value]="dataStockHistory" [loading]="loading" [rows]="20" [rowHover]="true"
+    styleClass="p-datatable-gridlines p-datatable-sm" [paginator]="true" responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            Historial por establecimiento de salud
+            <button pButton pRipple type="button" class="p-button-success ml-auto mr-2" icon="pi pi-file-excel"
+                (click)="getExcelData()"></button>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Establecimiento
+                </div>
+            </th>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Producto
+                </div>
+            </th>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Lote
+                </div>
+            </th>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Fecha
+                </div>
+            </th>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Stock
+                </div>
+            </th>
+        </tr>
+
+    </ng-template>
+    <ng-template pTemplate="body" let-dataStockHistory>
+        <tr>
+            <td>
+                {{dataStockHistory.almdes}}
+            </td>
+            <td>
+                {{dataStockHistory.pro_descripcion}}
+            </td>
+            <td>
+                {{dataStockHistory.stk_medcod_lote}}
+            </td>
+            <td>
+                {{dataStockHistory.fecha_stock|date:'dd/MM/yyyy'}}
+            </td>
+            <td style="text-align: right;">
+                {{dataStockHistory.stock|number}}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

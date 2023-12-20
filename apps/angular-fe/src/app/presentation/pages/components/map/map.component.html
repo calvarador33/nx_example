@@ -1,0 +1,9 @@
+<google-map width="100%" height="100%" [center]="center" [zoom]="zoom" (mapClick)="moveMap($event)"
+    (mapMousemove)="move($event)">
+
+    <map-marker #marker="mapMarker" [position]="position" [title]="title"
+        (mapClick)="openInfoWindow(marker)"></map-marker>
+    <map-info-window>
+        <div [innerHTML]="contentInfoWindow"></div>
+    </map-info-window>
+</google-map>

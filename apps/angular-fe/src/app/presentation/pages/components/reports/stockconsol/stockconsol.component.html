@@ -1,0 +1,130 @@
+<div class="container-stock">
+    <div class="grid p-fluid mt-3">
+        <div class="field col-12 md:col-4">
+            <app-filter-select [accion]="15" [label]="'Autoridad Sanitaria'" (onChange)="autoridadSanitaria=$event"
+                ngDefaultControl>
+            </app-filter-select>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="dropdown" optionLabel="name" [options]="optionsUE" [(ngModel)]="unidadEjecutora">
+                </p-dropdown>
+                <label for="dropdown">Unidad Ejecutora</label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <button type="button" pButton pRipple label="Buscar" (click)="getData()"></button>
+        </div>
+    </div>
+
+    <div class="container-main">
+        <p-table #dt1 dataKey="id" [value]="dataEstablishment" [loading]="loading" [rows]="20" [rowHover]="true" 
+        selectionMode="single" dataKey="swc_dash_valmcod"
+        styleClass="p-datatable-gridlines p-datatable-sm" [paginator]="true" responsiveLayout="scroll"
+        class = "table-container"
+        >
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                Listado
+                <button pButton pRipple type="button" class="p-button-success ml-auto mr-2" icon="pi pi-file-excel"
+                    (click)="getExcelData()"></button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="min-width: 12rem">
+                    <div class="flex justify-content-between align-items-center">
+                        Autoridad Sanitaria
+                    </div>
+                </th>
+                <th style="min-width: 12rem">
+                    <div class="flex justify-content-between align-items-center">
+                        Código IPRESS
+                    </div>
+                </th>
+                <th style="min-width: 12rem">
+                    <div class="flex justify-content-between align-items-center">
+                        Establecimiento
+
+                    </div>
+                </th>
+                <th style="min-width: 12rem">
+                    <div class="flex justify-content-between align-items-center">
+                        Categoría
+
+                    </div>
+                </th>
+                <th style="min-width: 12rem">
+                    <div class="flex justify-content-between align-items-center">
+                        Acciones
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th style="min-width: 12rem">
+                    <app-commonfilter [type]="'text'" [field]="'swc_dash_vDiresa'" [placeholder]="'Autoridad Sanitaria'"
+                        [menu]="'row'"></app-commonfilter>
+                </th>
+                <th style="min-width: 12rem">
+                    <app-commonfilter [type]="'text'" [field]="'swc_dash_valmcod'" [placeholder]="'IPRESS'"
+                        [menu]="'row'"></app-commonfilter>
+                </th>
+                <th style="min-width: 12rem">
+                    <app-commonfilter [type]="'text'" [field]="'swc_dash_vEstablecimiento'"
+                        [placeholder]="'Establecimiento'" [menu]="'row'"></app-commonfilter>
+                </th>
+                <th style="min-width: 12rem">
+                    <app-commonfilter [type]="'text'" [field]="'Categoria'" [placeholder]="'Categoria'"
+                        [menu]="'row'"></app-commonfilter>
+                </th>
+                <th style="min-width: 12rem">
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-dataEstablishment>
+            <tr [pSelectableRow]="dataEstablishment">
+                <td>
+                    {{dataEstablishment.swc_dash_vDiresa}}
+                </td>
+
+                <td>
+                    {{dataEstablishment.swc_dash_valmcod}}
+                </td>
+
+                <td>
+                    {{dataEstablishment.swc_dash_vEstablecimiento}}
+                </td>
+
+                <td>
+                    {{dataEstablishment.Categoria}}
+                </td>
+                <td>
+                    <button pButton pRipple type="button" class="p-button-warning ml-auto mr-2" icon="pi pi-eye"
+                        (click)="getDataDetail(dataEstablishment)"></button>
+                    <button pButton pRipple type="button" class="p-button-info mr-2" icon="pi pi-users"
+                        (click)="modalContact(dataEstablishment)"></button>
+                    <button pButton pRipple type="button" class="p-button-secondary" icon="pi pi-map-marker"
+                        (click)="modalMap(dataEstablishment)"></button>
+
+                </td>
+            </tr>
+        </ng-template>
+        </p-table>
+    </div>
+    
+
+    <p-sidebar *ngIf="dataContact!=='-'" [(visible)]="showContacts" [fullScreen]="true" [baseZIndex]="10000"
+        (onHide)="closeContact()">
+        <app-contact [contact]="dataContact"></app-contact>
+    </p-sidebar>
+
+    <p-sidebar *ngIf="dataStock!=='-'" [(visible)]="showStockEstablishment" [fullScreen]="true" [baseZIndex]="10000"
+        (onHide)="closeStockEstablishment()">
+        <app-stockestablishment [establishment]="dataStock"></app-stockestablishment>
+    </p-sidebar>
+
+    <p-sidebar *ngIf="dataMap!=='-'" [(visible)]="showMap" [fullScreen]="true" [baseZIndex]="10000"
+        (onHide)="closeMap()">
+        <app-map [establishment]="dataMap"></app-map>
+    </p-sidebar>
+</div>

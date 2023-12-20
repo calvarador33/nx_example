@@ -7,13 +7,14 @@ import { Message } from 'primeng/api';
 import { BaseView } from '../../../../../../../../libs/core/src/presentation/views/base.view';
 
 import { LoginPresenter } from '../../../../../../../../libs/core/src/presentation/presenters/login.presenter';
+import { LoginView } from '../../../../../../../../libs/core/src/presentation/views/login.view';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, BaseView {
+export class LoginComponent implements OnInit, LoginView {
   loginForm: FormGroup | undefined;
   password: Password | undefined
   checkbox: Checkbox | undefined
@@ -22,6 +23,8 @@ export class LoginComponent implements OnInit, BaseView {
   lsUsername: string = localStorage.getItem('username') ?? "";
   lsRememberme: boolean = Boolean(localStorage.getItem('rememberme') ?? false);
 
+  token: string | undefined
+
   form: any = {
     username: null,
     password: null
@@ -29,6 +32,9 @@ export class LoginComponent implements OnInit, BaseView {
 
 
   constructor(    private loginPresenter: LoginPresenter,) { }
+  routeToHome(){}  
+  showErrorModal(error: string, tipo: number){};
+  showError(error: string) {};
 
   setValues(res: any) {
     console.log(res);
@@ -54,4 +60,13 @@ export class LoginComponent implements OnInit, BaseView {
 
   }
 
+
+  showErrorViaMessages(error: string) {
+    this.msgs = [];
+    this.msgs.push({ severity: 'error', summary: '', detail: error });
+  }
+
+  resolved(captchaResponse: string) {
+    this.token = captchaResponse
+  }
 }

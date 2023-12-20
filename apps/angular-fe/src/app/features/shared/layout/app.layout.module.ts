@@ -40,6 +40,7 @@ import { AppFooterComponent } from '../footer/app.footer.component';
 import { AppMenuComponent } from '../menu/app.menu.component';
 import { AppSidebarComponent } from '../sidebar/app.sidebar.component';
 import { HomeComponent } from '../../../presentation/pages/home/home.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { HomeComponent } from '../../../presentation/pages/home/home.component';
         DividerModule,
         TableModule,
         SplitterModule,
+        RecaptchaModule,
         DialogModule,
         SkeletonModule,
     ],
