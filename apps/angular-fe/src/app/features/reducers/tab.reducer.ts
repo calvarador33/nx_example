@@ -1,7 +1,8 @@
 import { tabAction } from "../actions/tab.action";
 import { TabPrincipal } from "../interfaces/tabs.model";
 
-export function TabReducer(state: TabPrincipal[] = [], action: tabAction) {    
+const init = { activeTab: "ini", header: "Inicio", key: "init" }
+export function TabReducer(state: TabPrincipal[] = [init], action: tabAction) {
     switch (action.type) {
         case 'addTab':
             if (state.findIndex(e => e.header === action.payload.header) !== -1) {
@@ -11,9 +12,9 @@ export function TabReducer(state: TabPrincipal[] = [], action: tabAction) {
                 ...state,
                 action.payload
             ]
-        case 'removeTab':
-            return state.filter(element => element.header !== state[action.payload].header)
-        default:            
+      /*   case 'removeTab':
+            return state.filter(element => element.header !== state[action.payload].header) */
+        default:
             return state;
     }
 }

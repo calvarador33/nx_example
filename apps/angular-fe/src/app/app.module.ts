@@ -12,6 +12,8 @@ import { InjectorModule } from '../../../../libs/core/src/injector/injector.modu
 
 import { RECAPTCHA_SETTINGS, RecaptchaSettings, RecaptchaModule } from "ng-recaptcha";
 import { environment } from '../environments/environment';
+import { TabReducer } from './features/reducers/tab.reducer';
+import { ActiveTabReducer } from './features/reducers/activeTab.reducer';
 
 @NgModule({
     declarations: [
@@ -21,7 +23,7 @@ import { environment } from '../environments/environment';
         InjectorModule,
         AppRoutingModule,
         AppLayoutModule,
-        StoreModule.forRoot(),
+        StoreModule.forRoot({ tabs: TabReducer, activeTab: ActiveTabReducer }),
         EffectsModule.forRoot([]),
     ],
     providers: [

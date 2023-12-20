@@ -45,6 +45,8 @@ export class LoginPresenter implements BasePresenter {
     this._useCase.login(email,password ).then((res) => {
       this.baseView.setValues(res);
 
+      //this.view.routeToHome();
+
     }).catch((exception) => {
      console.log(exception) });
   }

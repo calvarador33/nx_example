@@ -1,7 +1,6 @@
 import { activeTabAction } from "../actions/activeTab.action";
-import { ActiveTab } from "../interfaces/activeTab.model";
 
-export function ActiveTabReducer(state: ActiveTab[] = [], action: activeTabAction) {    
+export function ActiveTabReducer(state: number = 0, action: activeTabAction) {    
     switch (action.type) {
         case 'updateActiveTab':            
             return action.payload

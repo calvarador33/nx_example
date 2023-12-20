@@ -8,6 +8,7 @@ import { BaseView } from '../../../../../../../../libs/core/src/presentation/vie
 
 import { LoginPresenter } from '../../../../../../../../libs/core/src/presentation/presenters/login.presenter';
 import { LoginView } from '../../../../../../../../libs/core/src/presentation/views/login.view';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -31,13 +32,17 @@ export class LoginComponent implements OnInit, LoginView {
   };
 
 
-  constructor(    private loginPresenter: LoginPresenter,) { }
-  routeToHome(){}  
+  constructor(    private loginPresenter: LoginPresenter, private router: Router,) { }
+  routeToHome(){
+    this.router.navigate(['/']);
+
+  }  
   showErrorModal(error: string, tipo: number){};
   showError(error: string) {};
 
   setValues(res: any) {
     console.log(res);
+    this.routeToHome()
   }
 
   ngOnInit() {
