@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EstablishmentService } from 'src/app/layout/service/establishment.service';
+import { EstablishmentService } from 'apps/angular-fe/src/app/features/service/establishment.service';
 
 @Component({
     selector: 'app-stockconsol',

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { EstablishmentService } from '../../service/establishment.service';
+
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { EstablishmentService } from 'apps/angular-fe/src/app/features/service/establishment.service';
 
 @Component({
   selector: 'app-map',

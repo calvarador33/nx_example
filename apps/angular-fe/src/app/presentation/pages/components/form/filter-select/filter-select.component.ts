@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { GeneralFiltersService } from 'src/app/layout/service/general-filters.service';
+import { GeneralFiltersService } from 'apps/angular-fe/src/app/features/service/general-filters.service';
+
 
 @Component({
   selector: 'app-filter-select',

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EstablishmentService } from '../../service/establishment.service';
+import { EstablishmentService } from 'apps/angular-fe/src/app/features/service/establishment.service';
 
 @Component({
   selector: 'app-contact',

@@ -30,6 +30,15 @@ import { DividerModule } from 'primeng/divider';
 import { TableModule } from 'primeng/table';
 import { SplitterModule } from 'primeng/splitter';
 
+import { MessageModule } from 'primeng/message';
+import { FieldsetModule } from 'primeng/fieldset';
+
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+
+import { ChartModule } from 'primeng/chart';
+
+
 import { DialogModule } from 'primeng/dialog';
 import { SkeletonModule } from 'primeng/skeleton';
 import { AppConfigModule } from '../config/config.module';
@@ -41,6 +50,16 @@ import { AppMenuComponent } from '../menu/app.menu.component';
 import { AppSidebarComponent } from '../sidebar/app.sidebar.component';
 import { HomeComponent } from '../../../presentation/pages/home/home.component';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { StockComponent } from '../../../presentation/pages/components/reports/stock/stock.component';
+import { FilterSelectComponent } from '../../../presentation/pages/components/form/filter-select/filter-select.component';
+import { ContactComponent } from '../../../presentation/pages/components/contact/contact.component';
+import { StockestablishmentComponent } from '../../../presentation/pages/components/reports/stockestablishment/stockestablishment.component';
+import { MapComponent } from '../../../presentation/pages/components/map/map.component';
+import { CommonfilterComponent } from '../../../presentation/pages/components/filtersTable/commonfilter/commonfilter.component';
+import { StockhistoryComponent } from '../../../presentation/pages/components/reports/stockhistory/stockhistory.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { CommonModule } from '@angular/common';
+import { StockconsolComponent } from '../../../presentation/pages/components/reports/stockconsol/stockconsol.component';
 
 
 @NgModule({
@@ -53,38 +72,53 @@ import { RecaptchaModule } from 'ng-recaptcha';
       AppSidebarComponent,
       AppLayoutComponent,
       LoginComponent,
-      HomeComponent
-
+      HomeComponent,
+      StockComponent,
+      StockconsolComponent,
+      FilterSelectComponent,
+      ContactComponent,
+      StockestablishmentComponent,
+      MapComponent,
+      CommonfilterComponent,
+      StockhistoryComponent,
+  
 
     ],
     imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        InputTextModule,
-        SidebarModule,
-        BadgeModule,
-        RadioButtonModule,
-        InputSwitchModule,
-        RippleModule,
-        RouterModule,
-        AppConfigModule,
-        PasswordModule,
-        CheckboxModule,
-        ButtonModule,
-        MessagesModule,
-        MenuModule,
-        TabMenuModule,
-        TabViewModule,
-        CalendarModule,
-        DropdownModule,
-        DividerModule,
-        TableModule,
-        SplitterModule,
-        RecaptchaModule,
-        DialogModule,
-        SkeletonModule,
+      CommonModule,
+      BrowserModule,
+      FormsModule,
+      HttpClientModule,
+      BrowserAnimationsModule,
+      InputTextModule,
+      SidebarModule,
+      BadgeModule,
+      RadioButtonModule,
+      InputSwitchModule,
+      RippleModule,
+      RouterModule,
+      AppConfigModule,
+      PasswordModule,
+      CheckboxModule,
+      ButtonModule,
+      MessagesModule,
+      MessageModule,
+      MenuModule,
+      TabMenuModule,
+      TabViewModule,
+      CalendarModule,
+      DropdownModule,
+      DividerModule,
+      TableModule,
+      SplitterModule,
+      DialogModule,
+      SkeletonModule,
+      GoogleMapsModule,
+      FieldsetModule,
+      RecaptchaModule,
+      ToastModule,
+      ToolbarModule,
+      ChartModule
     ],
     exports: [AppLayoutComponent]
 })

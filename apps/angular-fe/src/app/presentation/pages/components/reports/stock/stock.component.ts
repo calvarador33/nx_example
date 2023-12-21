@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { StockService } from 'apps/angular-fe/src/app/features/service/stock.service';
 import { FilterMatchMode, Message,FilterService, MessageService, SelectItem } from 'primeng/api';
-import { StockService } from 'src/app/layout/service/stock.service';
+
 
 
 @Component({

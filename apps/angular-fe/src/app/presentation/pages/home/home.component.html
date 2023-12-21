@@ -1,6 +1,12 @@
-<div class="card card-w-title flex flex-wrap">
-    <div class="col-12 md:col-12 h-full">
-        <p-tabView [scrollable]="true" (onClose)="removeTab($event)" [(activeIndex)]="activeIndex">
-
+<div class="card card-w-title flex flex-wrap" style="padding: 0px;border-radius:0px">
+    <div class="col-12 md:col-12 h-full" style="padding: 0px;" >
+        <p-tabView [scrollable]="true" (onClose)="removeTab($event)" [(activeIndex)]="activeIndex" >
+            <p-tabPanel *ngFor="let tab of tabs | async; let i =index;" header="{{tab.header}}" [closable]="i!==0"
+                [index]="0">
+                <app-dashboard *ngIf="tab.key==='init'"></app-dashboard>
+                <app-stock *ngIf="tab.key==='stopr'"></app-stock>
+                <app-stockconsol *ngIf="tab.key==='stocons'"></app-stockconsol>
+            </p-tabPanel>
         </p-tabView>
-    </div>
+    </div>    
+</div>

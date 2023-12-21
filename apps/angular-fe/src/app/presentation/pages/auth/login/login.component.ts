@@ -9,6 +9,7 @@ import { BaseView } from '../../../../../../../../libs/core/src/presentation/vie
 import { LoginPresenter } from '../../../../../../../../libs/core/src/presentation/presenters/login.presenter';
 import { LoginView } from '../../../../../../../../libs/core/src/presentation/views/login.view';
 import { Router } from '@angular/router';
+import { UserService } from 'apps/angular-fe/src/app/features/service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit, LoginView {
   };
 
 
-  constructor(    private loginPresenter: LoginPresenter, private router: Router,) { }
+  constructor(    private loginPresenter: LoginPresenter, private userService: UserService,private router: Router,) { }
   routeToHome(){
     this.router.navigate(['/']);
 
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit, LoginView {
 
   setValues(res: any) {
     console.log(res);
+    this.userService.saveData(res)
     this.routeToHome()
   }
 

@@ -18,9 +18,11 @@ export class HomeComponent implements OnInit {
   tabs: Observable<TabPrincipal[]>
   activeTab: Observable<number>
   activeIndex: number = 0;
+  len: number = 0;
 
   constructor(private store: Store<AppStateTab>, private storeActiveTab: Store<AppStateActiveTab>, private userService: UserService, private router: Router) {
     this.tabs = this.store.select(state => state.tabs);
+
     this.activeTab = this.storeActiveTab.select(state => state.activeTab);
     this.activeTab.subscribe(activeTab => this.activeIndex = activeTab);
   }
@@ -31,11 +33,7 @@ export class HomeComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     } */
-  }
-
-
-
-  
+  }  
 
   removeTab(event: any): void {
     this.store.dispatch({
@@ -43,9 +41,11 @@ export class HomeComponent implements OnInit {
       payload: event.index
     });
 
+    this.tabs.subscribe(tabs => this.len = tabs.length)
+
     this.storeActiveTab.dispatch({
       type: 'updateActiveTab',
-      payload: 0
+      payload: this.len - 1
     });
   }
 

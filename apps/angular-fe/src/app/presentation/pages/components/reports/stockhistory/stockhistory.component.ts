@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { StockService } from 'src/app/layout/service/stock.service';
+import { StockService } from 'apps/angular-fe/src/app/features/service/stock.service';
+
 
 @Component({
   selector: 'app-stockhistory',

@@ -35,7 +35,8 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Home',
                 items: [
-                    { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
+                    //{ label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
+                    { label: 'Inicio', icon: 'pi pi-fw pi-home', command: () => { this.addTab("Inicio", "init") } }
                 ]
             },
             {
@@ -45,6 +46,7 @@ export class AppMenuComponent implements OnInit {
                     //{ label: 'Ipress y Productos Consolidado Stocks y Consumo', icon: 'pi pi-fw pi-check-square', routerLink: ['/stockconsol'] },
                     { label: 'Consulta por Producto Stocks y Consumos en Iprees', icon: 'pi pi-fw pi-check-square', command: () => { this.addTab("Stock Producto", "stopr") } },
                     { label: 'Ipress y Productos Consolidado Stocks y Consumo', icon: 'pi pi-fw pi-check-square', command: () => { this.addTab("Stock Consolidado", "stocons") } },
+                    //{ label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message'] },
                 ]
             },
 
@@ -64,11 +66,13 @@ export class AppMenuComponent implements OnInit {
             });
         }
 
-        if (this.subscribeActiveTab !== index) {
-            this.storeActiveTab.dispatch({
-                type: 'updateActiveTab',
-                payload: index === -1 ? this.subscribeTab.length - 1 : index
-            });
+        if (this.subscribeActiveTab !== index) {            
+            setTimeout(() => {
+                this.storeActiveTab.dispatch({
+                    type: 'updateActiveTab',
+                    payload: index === -1 ? this.subscribeTab.length - 1 : index
+                });
+            }, 100);
         }
     }
 }
