@@ -3,6 +3,84 @@
   "version": 2,
   "projects": {
     "angular-fe": "apps/angular-fe",
-    "angular-lib": "libs/angular-lib"
-  }
+    "angular-lib": "libs/angular-lib",
+    "mobile": {
+      "name": "mobile",
+      "projectType": "application",
+      "root": "apps/mobile",
+      "sourceRoot": "apps/mobile/src",
+      "prefix": "nx-example",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "apps/mobile/www",
+            "index": "apps/mobile/src/index.html",
+            "main": "apps/mobile/src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "apps/mobile/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["apps/mobile/src/favicon.ico",
+              {
+                "glob" : "**/*",
+                "input" : "apps/mobile/src/assets",
+                "output" : "assets"
+              },
+              {
+                "glob" : "**/*.svg",
+                "input" : "node_modules/ionicons/dist/ionicons/svg",
+                "output" : "./svg"
+              }
+    
+    
+            ],
+            "styles": [
+              "apps/mobile/src/theme/variables.scss",
+              "apps/mobile/src/global.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "mobile:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mobile:build"
+            }
+          },
+          "development": {
+            "browserTarget": "mobile:build"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "angular-fe"
 }

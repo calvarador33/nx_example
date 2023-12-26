@@ -6,10 +6,9 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "N2E2YWE4M2EtYjdmOC00OTRmLWFjNDQtNjY0ZDk3NWY5NTcwfHJlYWQtd3JpdGU="
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
@@ -71,5 +70,6 @@
       }
     }
   },
-  "defaultProject": "angular-fe"
+  "defaultProject": "angular-fe",
+  "neverConnectToCloud": true
 }

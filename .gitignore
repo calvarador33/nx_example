@@ -4,6 +4,9 @@
 /dist
 /tmp
 /out-tsc
+/apps/mobile/www
+/apps/mobile/node_modules
+/apps/mobile/android
 
 # dependencies
 node_modules

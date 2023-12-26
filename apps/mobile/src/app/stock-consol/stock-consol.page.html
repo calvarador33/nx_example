@@ -1,0 +1,84 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="back()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Stock Consolidado</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-searchbar animated="true" color="light" placeholder="Buscar"></ion-searchbar>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-chip id="bottom-start">Filtro</ion-chip>
+          <ion-popover trigger="bottom-start" side="bottom" alignment="start">
+            <ng-template>
+              <ion-content class="ion-padding">Filtro</ion-content>
+              <ion-list>
+                <ion-item>
+                  <ion-select label="Autoridad Sanitaria" label-placement="floating">
+                    <ion-select-option value="apple">[TODOS]</ion-select-option>
+                    <ion-select-option value="apple">DIRESA-AMAZONAS</ion-select-option>
+                    <ion-select-option value="banana">DIRIS-LIMA CENTRO</ion-select-option>
+                    <ion-select-option value="orange">ESSALUD</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item>
+                  <ion-select label="Unidad Ejecutora" label-placement="floating">
+                    <ion-select-option value="apple">SI</ion-select-option>
+                    <ion-select-option value="apple">NO</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <br />
+                <ion-button expand="block">Aplicar</ion-button>
+              </ion-list>
+            </ng-template>
+          </ion-popover>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+
+  
+
+
+  <ion-list [inset]="true">
+
+    <ion-item-sliding>
+      <ion-item [button]="true" detail="false"  (click)="showDetail(item)">
+        <ion-label>
+          <ion-text>{{item.swc_dash_vEstablecimiento}}</ion-text><br />
+          <strong>{{item.swc_dash_vDiresa}}</strong><br />
+          <ion-note color="medium" class="ion-text-wrap">
+
+            Codigo Ipress : {{item.swc_dash_valmcod}}|Categoria : {{item.Categoria}}
+          </ion-note>
+        </ion-label>
+        <div class="metadata-end-wrapper" slot="end">
+          <ion-icon color="medium" name="chevron-forward-outline"></ion-icon>
+        </div>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="warning">
+          <ion-icon slot="icon-only" name="people-outline" (click)="showContact(item)"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="primary">
+          <ion-icon slot="icon-only" name="map-outline"  (click)="showMap(item)"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+
+
+  </ion-list>
+</ion-content>

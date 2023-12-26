@@ -1,0 +1,37 @@
+<ion-header [translucent]="true" id="loginHeader">
+  <ion-toolbar>
+    <ion-title>
+      INFOMED
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <main>
+    <div class="container">
+      <div class="login">
+        <ion-item>
+          <ion-input label="Usuario" labelPlacement="floating"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Contraseña" labelPlacement="floating" type="password"></ion-input>
+        </ion-item>
+        <br />
+        <ion-checkbox labelPlacement="end">Recordar Usuario</ion-checkbox>
+        <br />
+        <ion-button expand="block" (click)="setOpen(true)">Iniciar Sesión</ion-button>
+
+      </div>
+    </div>
+  </main>
+
+  <ion-toast position="top" positionAnchor="loginHeader" [isOpen]="isToastOpen" message="Ingrese datos de usuario"
+    [duration]="5000" (didDismiss)="setOpen(false)"></ion-toast>
+
+</ion-content>
+
+<ion-footer>
+  <span>Centro Nacional de Abastecimiento de Recursos Estratégicos en Salud.</span><br />
+  <span>Jirón Nazca Nº 548 - Jesús Maria / Lima - Perú</span><br />
+  <span>Central Telefónica : 748-3030</span>
+</ion-footer>

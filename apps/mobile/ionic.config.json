@@ -1,0 +1,20 @@
+{
+  "name": "Infomed App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "appId": "com.infomed.uat.app",
+  "appName": "Infomed App",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "backgroundColor": "#00b0ca",
+      "launchShowDuration": 4000,
+      "splashFullScreen": true,
+      "splashImmersive": true
+    }
+  }
+}

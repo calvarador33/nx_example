@@ -1,0 +1,28 @@
+{
+  "name": "mobile",
+  "version": "4.0.1",
+  "description": "",
+  "scripts": {
+    "cap.add.ios": "npx cap add ios",
+    "cap.add.android": "npx cap add android",
+    "cap.ios": "npx cap open ios",
+    "cap.android": "npx cap open android",
+    "cap.copy": "npx cap copy",
+    "cap.update": "npx cap update",
+    "cap.sync": "npx cap sync",
+    "cap.sync.ios": "npx cap sync ios",
+    "cap.sync.android": "npx cap sync android",
+    "np:ios:universal": "./bin/ios/universal.sh",
+    "np:ios:distribution": "./bin/ios/distribution.sh",
+    "jetify": "npx jetify"
+  },
+  "dependencies": {
+    "@capacitor/android": "file:../../node_modules/@capacitor/android",
+    "@capacitor/core": "file:../../node_modules/@capacitor/core",
+    "@capacitor/ios": "file:../../node_modules/@capacitor/ios"
+  },
+  "devDependencies": {
+    "@angular/cli": "file:../../node_modules/@angular/cli",
+    "@capacitor/cli": "file:../../node_modules/@capacitor/cli"
+  }
+}
