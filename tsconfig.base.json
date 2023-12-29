@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@nx-example/angular-lib": ["libs/angular-lib/src/index.ts"]
-    }
+    },
+    "suppressImplicitAnyIndexErrors": false
   },
   "exclude": ["node_modules", "tmp"]
 }

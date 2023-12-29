@@ -1,0 +1,67 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+
+    <ion-list>
+
+      <ion-item [button]="true">
+        <ion-label>Consulta por Producto Stocks y Consumo Iprees</ion-label>
+        <ion-note slot="end"></ion-note>
+      </ion-item>
+
+      <ion-item [button]="true">
+        <ion-label>Ipress y Productos Consolidado Stocks y Consumo</ion-label>
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+</ion-menu>
+
+
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>INFOMED</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+
+
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col>
+          <ion-card color="tertiary">
+            <ion-card-header>
+              <ion-card-title> Consulta por Producto </ion-card-title>
+              <ion-card-subtitle>Stocks y Consumo Iprees</ion-card-subtitle>
+            </ion-card-header>            
+          </ion-card>
+
+        </ion-col>
+        <ion-col>
+          <ion-card color="medium" (click)="evento()">
+            <ion-card-header>
+              <ion-card-title>Ipress y Productos Consolidado</ion-card-title>
+              <ion-card-subtitle>Stocks y Consumo</ion-card-subtitle>
+            </ion-card-header>            
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+
+
+
+  </ion-content>
+</div>

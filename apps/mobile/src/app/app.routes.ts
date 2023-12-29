@@ -1,46 +1,30 @@
-import {  Routes } from '@angular/router';
-import { HomeComponentModule } from './home/home.module';
-import { LoginPagetModule } from './login/login.module';
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  /* {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomeComponent),
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomeComponent),
-  }, */
+
   { path: "", redirectTo: "login", pathMatch: "full" },
   {
     path: 'login',
-    loadChildren: () =>
-      import('./login/login.module').then(
-        (mod) => mod.LoginPagetModule
-      ),
+    loadComponent: () => import('./feature/login/login.page').then(m => m.LoginPage)
   },
   {
     path: 'home',
-    loadChildren: () =>
-      import('./home/home.module').then(
-        (mod) => mod.HomeComponentModule
-      ),
+    loadComponent: () => import('./feature/home/home.component').then(m => m.HomeComponent)
   },
-/*   {
+  {
     path: 'stock-consol',
-    loadComponent: () => import('./stock-consol/stock-consol.page').then( m => m.StockConsolPage)
+    loadComponent: () => import('./feature/stock-consol/stock-consol.page').then(m => m.StockConsolPage)
   },
   {
     path: 'contact',
-    loadComponent: () => import('./contact/contact.page').then( m => m.ContactPage)
+    loadComponent: () => import('./feature/contact/contact.page').then(m => m.ContactPage)
   },
   {
     path: 'map',
-    loadComponent: () => import('./map/map.page').then( m => m.MapPage)
+    loadComponent: () => import('./feature/map/map.page').then(m => m.MapPage)
   },
   {
     path: 'stock-establishment',
-    loadComponent: () => import('./stock-establishment/stock-establishment.page').then( m => m.StockEstablishmentPage)
-  }, */
+    loadComponent: () => import('./feature/stock-establishment/stock-establishment.page').then(m => m.StockEstablishmentPage)
+  },
 ];
